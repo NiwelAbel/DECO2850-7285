@@ -17,10 +17,14 @@ Currently in the **Problem Identification** phase (no solution or design specifi
 
 ## Repository Structure
 
-├── Project research/
-│ └── SpyKids_Research_Plan.md # Research methodology, ethics, timeline
+```
+├── 00 Project Plan/                    # Semester timeline, phases, and milestones
+├── 01 Literature Review/               # Annotated bibliography and secondary research
+├── 02 Project Research and Findings/   # Research plan, methodology, primary data, synthesis
+├── 03 Project Design/                  # Design concept development (from Week 5 onward)
+├── 04 Design Solution/                 # Prototypes and design specification (later phases)
 └── README.md
-
+```
 
 ## Key Dates
 
