@@ -1,7 +1,8 @@
 # SpyKids — Project Plan
-**Topic:** Left-behind children (parental absence due to labour migration)
-**Course:** DECO2850/DECO7285 Studio 2 — Interaction Design, Sem 2 2026
-**Studio contact:** Thursdays, 10am–2pm, Room 39A-208 (GP North)
+
+- **Topic:** Left-behind children (parental absence due to labour migration)
+- **Course:** DECO2850/DECO7285 Studio 2 — Interaction Design, Sem 2 2026
+- **Studio contact:** Thursdays, 10am–2pm, Room 39A-208 (GP North)
 
 **Research Question:**
 *How does parental absence affect left-behind children's emotional wellbeing, guidance, and development — and what is actually needed to address this gap?*
