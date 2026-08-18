@@ -48,14 +48,14 @@ The team's Week 3 session already produced a working scope, splitting the proble
 | Ethics & values pass (Week 4 topic: vulnerable population — children, family separation) — revisit before *and* after the pilot | Ethics considerations draft | Whole team | Week 4 |
 | Synthesis session: cross-check the pilot and literature findings against the Week 3 assumptions — which held up, which need revising? | Updated problem framing + revised assumptions list | Whole team | Week 4 |
 
-**Gate before moving to Phase 2:** the team (and each member individually, since Assessment 1 is individual) should be able to state the problem, its stakeholders, and its ethical risks clearly, backed by at least two independent sources of evidence — *without* naming a solution. If Cycle 1b synthesis surfaces a significantly different picture than Cycle 1a assumed — including whether the financial-difficulty split actually holds up as the right lens — treat that as useful and revise the framing before moving on, rather than carrying an outdated assumption into Assessment 1.
+**Gate before moving to Phase 2:** the team (and each member individually, since Assessment 1 is individual) should be able to state the problem, its stakeholders, and its ethical risks clearly, backed by at least two independent sources of evidence — *without* naming a solution. This is now formalised as a **Problem Identification Document** (see `02 Project Research and Findings/` or `00 Project Plan/`) — a single reviewable file consolidating the Who/How/Why/Impact/Risks framing, the Week 3 financial-difficulty segmentation, and a living Assumptions Register marking every claim as untested/tested/confirmed. Phase 2 doesn't start in earnest until this document exists in reviewable form. If Cycle 1b synthesis surfaces a significantly different picture than Cycle 1a assumed — including whether the financial-difficulty split actually holds up — revise the framing before moving on, rather than carrying an outdated assumption into Assessment 1.
 
 ---
 
 ## Phase 2 — Knowledge Gathering
 **Weeks 4–5 (20/08, 27/08/26)**
 
-Deepens and completes the research set in motion in Phase 1: executing the full Suite of Methods the team agreed on in Week 3, before any synthesis or design thinking begins. This phase is about building the team's shared evidence base — not about writing anything for submission.
+Deepens and completes the research set in motion in Phase 1: executing the full Suite of Methods the team agreed on in Week 3, before any synthesis or design thinking begins. This phase is about building the team's shared evidence base — not about writing anything for submission. Phase 2 starts from the **Problem Identification Document** produced at the end of Phase 1, and its central job is to work through that document's Assumptions Register, testing each row against real evidence.
 
 | Task | Output | Owner | Target |
 |---|---|---|---|
