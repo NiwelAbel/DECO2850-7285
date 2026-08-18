@@ -44,31 +44,30 @@ The team's Week 3 session already produced a working scope, splitting the proble
 
 | Task | Output | Owner | Target |
 |---|---|---|---|
-| Run the selected methods (e.g. informal interviews with people with relevant experience, review of existing forums/support communities, secondary data from migration/child-welfare reports) — probe both segments (with/without financial difficulty) where possible | Raw research notes/data | Whole team, split by method | Week 4 |
-| Ethics & values pass (Week 4 topic: vulnerable population — children, family separation) — revisit before *and* after data collection | Ethics considerations draft | Whole team | Week 4 |
-| Synthesis session: cross-check findings against the Week 3 assumptions, including the financial-difficulty segmentation and the six sub-problems above — which held up, which need revising? | Updated problem framing + revised assumptions list | Whole team | Week 4 |
+| Pilot the selected methods with 1–2 participants (a small first pass, not the full data collection) — e.g. one informal interview, one quick look at an online forum | Pilot notes | 1–2 members | Week 4 |
+| Ethics & values pass (Week 4 topic: vulnerable population — children, family separation) — revisit before *and* after the pilot | Ethics considerations draft | Whole team | Week 4 |
+| Synthesis session: cross-check the pilot and literature findings against the Week 3 assumptions — which held up, which need revising? | Updated problem framing + revised assumptions list | Whole team | Week 4 |
 
 **Gate before moving to Phase 2:** the team (and each member individually, since Assessment 1 is individual) should be able to state the problem, its stakeholders, and its ethical risks clearly, backed by at least two independent sources of evidence — *without* naming a solution. If Cycle 1b synthesis surfaces a significantly different picture than Cycle 1a assumed — including whether the financial-difficulty split actually holds up as the right lens — treat that as useful and revise the framing before moving on, rather than carrying an outdated assumption into Assessment 1.
 
 ---
 
-## Phase 2 — Individual Proposal Writing
-**Weeks 5–7 (27/08, 03/09, 10/09/26), due 07/09/26 3pm — Assessment 1 (20%/10%)**
+## Phase 2 — Knowledge Gathering
+**Weeks 4–5 (20/08, 27/08/26)**
 
-- ~1500 words, individual: your own vision for the project
-- Structure: (1) main idea, (2) desired interactions supported by the application, (3) potential ethical issues
-- Note: this is where "desired interactions" first appears in the brief — the syllabus positions this as the first legitimate point to start sketching *what kind of interaction* might help, still grounded in the problem analysis from Phase 1
-- APA referencing; AI use must be acknowledged with a shareable chat link
+Deepens and completes the research set in motion in Phase 1: executing the full Suite of Methods the team agreed on in Week 3, before any synthesis or design thinking begins. This phase is about building the team's shared evidence base — not about writing anything for submission.
 
-| Task | Studio Topic | Target |
-|---|---|---|
-| Qualitative data analysis of any research gathered | Week 5 — Data Analysis | 27/08/26 |
-| Individual draft of proposal | Week 6 — Prototyping & Interactions | 03/09/26 |
-| Peer feedback within team | — | by 05/09/26 |
-| Submit Assessment 1 | — | 07/09/26, 3pm |
-| (Studio session continues) | Week 7 — UX | 10/09/26 |
+| Task | Output | Owner | Target |
+|---|---|---|---|
+| Complete literature review — extend the Phase 1 scan into a fuller annotated bibliography | Annotated bibliography (8–10+ sources) | 2 members (rotating/expanding) | Week 4 |
+| Formulate question guides for each assigned method (Contextual Inquiry, Rapid Ethnography, Digital Ethnography, Mapping, Object Inventory) — per Research Plan's method-to-member assignment, informed by what the Week 4 pilot surfaced | Method-specific question/prompt guides | Each member, for their assigned method | Week 4 |
+| Conduct the full round of interviews / observations / mapping sessions / object inventories (beyond the Week 4 pilot) — each member engages at least one participant; team-wide target 6–10 participants (Assessment 2 requirement) | Interview transcripts, observation logs, maps, object inventories | Each member | Week 4–5 |
+| Digital ethnography: notify gatekeeper/community first, then observe/participate per ethical conduct expectations | Digital ethnography log | Assigned member(s) | Week 4–5 |
+| Qualitative data analysis (Week 5 studio topic) — code all gathered data against Who/How/Why/Impact/Risks, the financial-difficulty segmentation, and an "unexpected" category | Coded findings | Whole team | Week 5 |
+| Team synthesis session — test the "financial difficulty is the key segmenting variable" assumption from Phase 1 against what the data actually shows | Synthesised findings + updated problem framing | Whole team | Week 5 |
+| Design concept hypothesis — the formal Week 3–5 output Assessment 2 grades; a shared direction, not a specification | Design concept hypothesis (direction, not spec) | Whole team | Week 5 |
 
-**Note on overlap:** Assessment 1 is due 07/09/26, a few days *before* the Week 7 studio session (10/09/26) and while Phase 3 team prototyping is already underway. This is intentional — the syllabus schedule has individual proposal writing (Phase 2) and early team-level prototyping (Phase 3) running concurrently across Weeks 6–7, not sequentially. Budget team time accordingly so Assessment 1 doesn't get squeezed by exhibit prep.
+**Not a phase — Assessment 1 (Individual Proposal):** Assessment 1 (~1500 words, due 07/09/26, 3pm) isn't a separate stage of the project. It's an individual deliverable each member writes by drawing on the shared knowledge base built across Phases 1–2 — their own take on the problem, desired interactions, and ethical issues. It happens in parallel with Phase 3's early team prototyping, not before or after it as its own gate.
 
 ---
 
@@ -78,14 +77,14 @@ The team's Week 3 session already produced a working scope, splitting the proble
 - Prototyping methods, API & tangibles (Week 6, 03/09/26)
 - UX design (Week 7, 10/09/26)
 - Deliverable: work-in-progress prototype with *some* interactivity — no user evaluation expected yet
-- Runs concurrently with Phase 2 (see note above) — the individual Assessment 1 due 07/09/26 sits inside this window
+- Draws on Phase 2's synthesised findings and design concept hypothesis, plus each member's individual Assessment 1 proposal (due 07/09/26) as they come in — Assessment 1 sits inside this window, not before it
 
 Treat this as three short internal loops rather than one build:
 
 | Sub-cycle | Task | Target |
 |---|---|---|
-| 3.1 Converge | Reconcile the individual Assessment 1 proposals into one team direction; note what's being dropped and why | Week 6 (03/09) |
-| 3.2 Sketch → critique | Produce 2–3 rough concept sketches/paper prototypes, critique as a team against the Phase 1 research findings, pick one | Week 6–7 (03–10/09) |
+| 3.1 Converge | Reconcile individual Assessment 1 proposals with the Phase 2 design concept hypothesis into one team direction; note what's being dropped and why | Week 6 (03/09) |
+| 3.2 Sketch → critique | Produce 2–3 rough concept sketches/paper prototypes, critique as a team against the Phase 1–2 research findings, pick one | Week 6–7 (03–10/09) |
 | 3.3 Build → internal test | Build low/mid-fidelity interactive prototype; do a quick internal walkthrough (team members act as users) and fix obvious breakages before the exhibit | Week 7–8 (10–17/09) |
 | Prepare exhibit boards/materials | — | Week 8 (17/09) |
 | Design Exhibit 1 | — | 17/09/26 |
