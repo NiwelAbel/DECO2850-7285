@@ -14,24 +14,41 @@
 
 This is where the team is now. No solution or design framing yet — the goal is a rigorous, well-evidenced articulation of the problem space. Rather than one research pass, run this as two short cycles so early findings can reshape what you look at next.
 
+### Week 3 Scoping Outcome (team brainstorm)
+
+The team's Week 3 session already produced a working scope, splitting the problem by **financial difficulty status** — treating this as a key variable that changes what left-behind children actually need:
+
+| Segment | Sub-problem | Team's early hypothesis |
+|---|---|---|
+| Without financial difficulty | Time / companionship | No companion present day-to-day |
+| Without financial difficulty | Education | Parents unable to model values in person; possible long-term impact |
+| Without financial difficulty | Emotion | Absent parents may not notice a child's emotional distress → risk of unaddressed psychological issues |
+| With financial difficulty | Time / companionship | No companion for extended periods (1–2 years) |
+| With financial difficulty | Security | Children living with grandparents may be more vulnerable (e.g. kidnapping risk) due to reduced monitoring capacity |
+| With financial difficulty | Education | Both formal education access and value-shaping affected; rural education quality flagged as a factor |
+
+**Important:** the sheets also captured early "possible solutions" (babysitter/volunteer apps, tutors, summer camps, security talks, donation schemes, volunteer teachers). Per the course's own pacing, none of these should be treated as decided — a design concept isn't expected until Week 5, and should come from data, not from this initial brainstorm. Carry them forward only as **candidate hypotheses to test**, not commitments.
+
+**New assumption to test in Research Cycle 1a/1b:** *"Financial difficulty status is the right variable to segment this population by, and meaningfully changes the problem profile."* This wasn't in the original Who/How/Why/Impact/Risks framing and should be explicitly checked against literature and interview data — it's plausible, but currently based on team intuition rather than evidence.
+
 **Research Cycle 1a — Framing (Week 3)**
 
 | Task | Output | Owner | Target |
 |---|---|---|---|
-| Finalise Who / How / Why / Impact / Risks framing | Structured doc in Miro | Whole team | Week 3 |
-| Literature scan on left-behind children (migration studies, child development, HCI/care literature) | Annotated bibliography, 8–10 sources min | 2 members | Week 3 |
-| Draft assumptions to test (e.g. "experience is uniform across ages" — flagged as a risk) | List of assumptions | Whole team | Week 3 |
+| Finalise Who / How / Why / Impact / Risks framing, incorporating the financial-difficulty segmentation above | Structured doc in Miro | Whole team | Week 3 |
+| Literature scan on left-behind children (migration studies, child development, HCI/care literature) — specifically look for evidence on whether financial status changes outcomes | Annotated bibliography, 8–10 sources min | 2 members | Week 3 |
+| Draft assumptions to test (e.g. "experience is uniform across ages," "financial difficulty is the key segmenting variable" — both flagged as risks) | List of assumptions | Whole team | Week 3 |
 | Method selection for Week 3 topic — pick at least 2 complementary methods (e.g. semi-structured interviews + object-based methods, or online ethnography + secondary data) so findings can be triangulated rather than resting on one source of evidence | Method shortlist + rationale | Whole team | Week 3 |
 
 **Research Cycle 1b — Grounding & Synthesis (Week 4)**
 
 | Task | Output | Owner | Target |
 |---|---|---|---|
-| Run the selected methods (e.g. informal interviews with people with relevant experience, review of existing forums/support communities, secondary data from migration/child-welfare reports) | Raw research notes/data | Whole team, split by method | Week 4 |
+| Run the selected methods (e.g. informal interviews with people with relevant experience, review of existing forums/support communities, secondary data from migration/child-welfare reports) — probe both segments (with/without financial difficulty) where possible | Raw research notes/data | Whole team, split by method | Week 4 |
 | Ethics & values pass (Week 4 topic: vulnerable population — children, family separation) — revisit before *and* after data collection | Ethics considerations draft | Whole team | Week 4 |
-| Synthesis session: cross-check findings against the Week 3 assumptions — which held up, which need revising? | Updated problem framing + revised assumptions list | Whole team | Week 4 |
+| Synthesis session: cross-check findings against the Week 3 assumptions, including the financial-difficulty segmentation and the six sub-problems above — which held up, which need revising? | Updated problem framing + revised assumptions list | Whole team | Week 4 |
 
-**Gate before moving to Phase 2:** the team (and each member individually, since Assessment 1 is individual) should be able to state the problem, its stakeholders, and its ethical risks clearly, backed by at least two independent sources of evidence — *without* naming a solution. If Cycle 1b synthesis surfaces a significantly different picture than Cycle 1a assumed, treat that as useful and revise the framing before moving on, rather than carrying an outdated assumption into Assessment 1.
+**Gate before moving to Phase 2:** the team (and each member individually, since Assessment 1 is individual) should be able to state the problem, its stakeholders, and its ethical risks clearly, backed by at least two independent sources of evidence — *without* naming a solution. If Cycle 1b synthesis surfaces a significantly different picture than Cycle 1a assumed — including whether the financial-difficulty split actually holds up as the right lens — treat that as useful and revise the framing before moving on, rather than carrying an outdated assumption into Assessment 1.
 
 ---
 
