@@ -26,7 +26,7 @@ The team also carried forward an early working hypothesis that financial difficu
 
 **2.1 Five-Lens Framing (Phase 1 Output)**
 
-  ------------ -------------------------------------------------------------------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------------------------------------------------------
   **Lens**     **Phase 1 Framing**
 
   **Who**      Left-behind children (primary); migrant parent(s); on-the-ground caregiver (grandparent, relative, or guardian); wider household and community.
