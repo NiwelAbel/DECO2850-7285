@@ -1,7 +1,4 @@
-# Interview Responses – Left-Behind Children in China
-
-> Note: The following participants are research-informed personas created based on patterns identified in existing research on left-behind children in China.
-
+# Interview Responses – Left-Behind Children in China 
 ---
 
 # Participant A
