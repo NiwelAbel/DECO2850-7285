@@ -7,6 +7,8 @@
 **Research Question:**
 *How does parental absence affect left-behind children's emotional wellbeing, guidance, and development — and what is actually needed to address this gap?*
 
+> **Assessments are a by-product, not the goal.** This plan is built around doing the project properly — understanding the problem, gathering real evidence, and iterating with care. Assessment 1, Milestones 1–3, Assessment 3, and Assessment 4 all fall out naturally from that work when it's done well. Keep the team's focus on the *work*; the submissions take care of themselves.
+
 ---
 
 ## Phase 1 — Problem Identification (Current Phase)
@@ -72,11 +74,12 @@ Deepens and completes the research set in motion in Phase 1: executing the full 
 ---
 
 ## Phase 3 — Iteration 1 (Team)
-**Weeks 6–8 (03/09, 10/09, 17/09/26), Milestone 1 due 17/09/26 — Design Exhibit 1 (10%)**
+**Weeks 6–8 (03/09, 10/09, 17/09/26) — Design Exhibit 1 (Milestone 1, 10%), due 17/09/26**
 
 - Prototyping methods, API & tangibles (Week 6, 03/09/26)
 - UX design (Week 7, 10/09/26)
 - Deliverable: work-in-progress prototype with *some* interactivity — no user evaluation expected yet
+- The exhibit is a checkpoint for showing real progress, not the target itself — the sub-cycles below are what actually produce something worth showing
 - Draws on Phase 2's synthesised findings and design concept hypothesis, plus each member's individual Assessment 1 proposal (due 07/09/26) as they come in — Assessment 1 sits inside this window, not before it
 
 Treat this as three short internal loops rather than one build:
@@ -113,11 +116,12 @@ This phase is where research and design iteration should be tightest — use it 
 ---
 
 ## Phase 5 — Iteration 2 (Team)
-**Weeks 12–13 (22/10, 29/10/26), Milestone 2 due 29/10/26 — Design Exhibit 2 (25%)**
+**Weeks 12–13 (22/10, 29/10/26) — Design Exhibit 2 (Milestone 2, 25%), due 29/10/26**
 
 - Week 12's official studio topic is "Prep for Exhibit" — treat this as the main build/refinement week, not just logistics
 - High-fidelity prototype, polished aesthetics/interactions
 - Must integrate findings from user engagement/testing (Phase 4)
+- Again, the exhibit is where progress gets shown — the refinement work in the table below is what matters
 
 | Task | Target |
 |---|---|
