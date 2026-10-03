@@ -1,15 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { Mic, Play, Square, Send, Trash2 } from "lucide-react";
+import {
+  Mic,
+  Play,
+  Pause,
+  Square,
+  Send,
+  Trash2
+} from "lucide-react";
 
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 
 export default function Messages({ setPage }) {
   const [recording, setRecording] = useState(false);
+
+  // Current recording
   const [audioUrl, setAudioUrl] = useState(null);
   const [audioBlob, setAudioBlob] = useState(null);
   const [recordTime, setRecordTime] = useState(0);
-  const [sentVoice, setSentVoice] = useState(null);
+
+  // All sent recordings
+  const [sentVoices, setSentVoices] = useState([]);
+
   const [permissionError, setPermissionError] = useState("");
 
   const mediaRecorderRef = useRef(null);
@@ -18,8 +30,11 @@ export default function Messages({ setPage }) {
   const timerRef = useRef(null);
 
   /*
-   * Start REAL microphone recording
+   * =====================================================
+   * START RECORDING
+   * =====================================================
    */
+
   const startRecording = async () => {
     try {
       setPermissionError("");
@@ -42,7 +57,7 @@ export default function Messages({ setPage }) {
       mediaRecorderRef.current = recorder;
       chunksRef.current = [];
 
-      recorder.ondataavailable = event => {
+      recorder.ondataavailable = (event) => {
         if (event.data.size > 0) {
           chunksRef.current.push(event.data);
         }
@@ -58,9 +73,13 @@ export default function Messages({ setPage }) {
         setAudioBlob(blob);
         setAudioUrl(url);
 
-        // Stop microphone access
-        stream.getTracks().forEach(track => track.stop());
-        streamRef.current = null;
+        if (streamRef.current) {
+          streamRef.current
+            .getTracks()
+            .forEach((track) => track.stop());
+
+          streamRef.current = null;
+        }
       };
 
       recorder.start();
@@ -69,7 +88,7 @@ export default function Messages({ setPage }) {
       setRecordTime(0);
 
       timerRef.current = setInterval(() => {
-        setRecordTime(prev => prev + 1);
+        setRecordTime((previous) => previous + 1);
       }, 1000);
 
     } catch (error) {
@@ -81,9 +100,13 @@ export default function Messages({ setPage }) {
     }
   };
 
+
   /*
-   * Stop REAL microphone recording
+   * =====================================================
+   * STOP RECORDING
+   * =====================================================
    */
+
   const stopRecording = () => {
     if (
       mediaRecorderRef.current &&
@@ -97,9 +120,13 @@ export default function Messages({ setPage }) {
     clearInterval(timerRef.current);
   };
 
+
   /*
-   * Delete current recording
+   * =====================================================
+   * DELETE CURRENT RECORDING
+   * =====================================================
    */
+
   const deleteRecording = () => {
     if (audioUrl) {
       URL.revokeObjectURL(audioUrl);
@@ -110,27 +137,46 @@ export default function Messages({ setPage }) {
     setRecordTime(0);
   };
 
+
   /*
-   * Send recording into conversation
+   * =====================================================
+   * SEND RECORDING
+   * =====================================================
    */
+
   const sendRecording = () => {
     if (!audioUrl || !audioBlob) {
       return;
     }
 
-    setSentVoice({
+    const newVoice = {
+      id: Date.now(),
       url: audioUrl,
       duration: recordTime
-    });
+    };
+
+    // IMPORTANT:
+    // Add the new message instead of replacing old messages.
+    setSentVoices((previous) => [
+      ...previous,
+      newVoice
+    ]);
+
+    // Do NOT revoke audioUrl here.
+    // The message is still using this URL.
 
     setAudioUrl(null);
     setAudioBlob(null);
     setRecordTime(0);
   };
 
+
   /*
-   * Cleanup when leaving the page
+   * =====================================================
+   * CLEANUP ONLY WHEN PAGE IS DESTROYED
+   * =====================================================
    */
+
   useEffect(() => {
     return () => {
       clearInterval(timerRef.current);
@@ -138,17 +184,37 @@ export default function Messages({ setPage }) {
       if (streamRef.current) {
         streamRef.current
           .getTracks()
-          .forEach(track => track.stop());
+          .forEach((track) => track.stop());
       }
 
-      if (audioUrl) {
-        URL.revokeObjectURL(audioUrl);
-      }
+      // Don't revoke URLs belonging to sent messages here.
+      // They need to remain playable while the page exists.
     };
   }, []);
 
+
+  /*
+   * =====================================================
+   * FORMAT TIME
+   * =====================================================
+   */
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    return `${String(minutes).padStart(2, "0")}:${String(
+      remainingSeconds
+    ).padStart(2, "0")}`;
+  };
+
+
   return (
     <div className="mobile-screen app-screen">
+
+      {/* =================================================
+          SCROLLABLE CONTENT
+          ================================================= */}
 
       <main className="content messages-content">
 
@@ -159,7 +225,11 @@ export default function Messages({ setPage }) {
           <span>Bear is listening</span>
         </div>
 
-        {/* Child's first message */}
+
+        {/* =================================================
+            CHILD MESSAGE
+            ================================================= */}
+
         <VoiceMessage
           from="Your child"
           time="Today 6:30 PM"
@@ -167,14 +237,18 @@ export default function Messages({ setPage }) {
           fresh
         />
 
-        {/* Child's second message */}
+
         <VoiceMessage
           from="Your child"
           time="Today 4:15 PM"
           duration="0:25"
         />
 
-        {/* Previous parent message */}
+
+        {/* =================================================
+            EXISTING PARENT MESSAGE
+            ================================================= */}
+
         <VoiceMessage
           from="You"
           time="Today 2:10 PM"
@@ -182,13 +256,25 @@ export default function Messages({ setPage }) {
           mine
         />
 
-        {/* NEW REAL RECORDING */}
-        {sentVoice && (
+
+        {/* =================================================
+            ALL NEW RECORDINGS
+            ================================================= */}
+
+        {sentVoices.map((voice, index) => (
           <RecordedVoice
-            audioUrl={sentVoice.url}
-            duration={sentVoice.duration}
+            key={voice.id}
+            audioUrl={voice.url}
+            duration={voice.duration}
+            number={index + 1}
+            formatTime={formatTime}
           />
-        )}
+        ))}
+
+
+        {/* =================================================
+            ERROR
+            ================================================= */}
 
         {permissionError && (
           <div className="record-error">
@@ -198,8 +284,14 @@ export default function Messages({ setPage }) {
 
       </main>
 
-      {/* Recording / preview controls */}
+
+      {/* ===================================================
+          RECORDING CONTROLS
+          =================================================== */}
+
       <div className="record-area">
+
+        {/* NORMAL */}
 
         {!recording && !audioUrl && (
           <button
@@ -211,53 +303,73 @@ export default function Messages({ setPage }) {
           </button>
         )}
 
+
+        {/* RECORDING */}
+
         {recording && (
           <div className="recording-controls">
 
             <div className="recording-status">
+
               <span className="recording-dot" />
 
               <div>
-                <strong>Recording...</strong>
+                <strong>
+                  Recording...
+                </strong>
+
                 <small>
-                  00:{String(recordTime).padStart(2, "0")}
+                  {formatTime(recordTime)}
                 </small>
               </div>
+
             </div>
+
 
             <button
               className="stop-recording"
               onClick={stopRecording}
             >
               <Square
-                size={18}
+                size={17}
                 fill="white"
               />
+
               Stop
             </button>
 
           </div>
         )}
 
+
+        {/* PREVIEW */}
+
         {!recording && audioUrl && (
+
           <div className="recording-preview">
 
             <div className="preview-title">
-              <div>
-                <strong>Your recording</strong>
 
-                <small>
-                  00:{String(recordTime).padStart(2, "0")}
-                </small>
-              </div>
+              <strong>
+                Your recording
+              </strong>
+
+              <small>
+                {formatTime(recordTime)}
+              </small>
+
             </div>
 
-            {/* REAL AUDIO PLAYER */}
+
+            {/* REAL PLAYBACK */}
+
             <audio
               controls
+              preload="metadata"
               src={audioUrl}
               className="audio-player"
             />
+
 
             <div className="preview-buttons">
 
@@ -267,6 +379,7 @@ export default function Messages({ setPage }) {
               >
                 <Trash2 size={18} />
               </button>
+
 
               <button
                 className="send-recording"
@@ -279,9 +392,15 @@ export default function Messages({ setPage }) {
             </div>
 
           </div>
+
         )}
 
       </div>
+
+
+      {/* ===================================================
+          BOTTOM NAV
+          =================================================== */}
 
       <Nav
         page="messages"
@@ -293,9 +412,10 @@ export default function Messages({ setPage }) {
 }
 
 
-/*
- * Existing voice message
- */
+/* =========================================================
+   NORMAL VOICE MESSAGE
+   ========================================================= */
+
 function VoiceMessage({
   from,
   time,
@@ -303,6 +423,7 @@ function VoiceMessage({
   mine,
   fresh
 }) {
+
   const bars = [
     8, 14, 20, 11, 17, 24,
     13, 19, 10, 16, 21, 12,
@@ -311,9 +432,7 @@ function VoiceMessage({
 
   return (
     <div
-      className={`voice ${
-        mine ? "mine" : ""
-      }`}
+      className={`voice ${mine ? "mine" : ""}`}
     >
 
       <div className="voice-top">
@@ -323,6 +442,7 @@ function VoiceMessage({
         </strong>
 
         <span>
+
           {fresh && (
             <b className="new">
               NEW
@@ -330,9 +450,11 @@ function VoiceMessage({
           )}
 
           {time}
+
         </span>
 
       </div>
+
 
       <div className="wave-row">
 
@@ -342,6 +464,7 @@ function VoiceMessage({
             fill="white"
           />
         </button>
+
 
         <div className="wave">
 
@@ -356,6 +479,7 @@ function VoiceMessage({
 
         </div>
 
+
         <span>
           {duration}
         </span>
@@ -367,13 +491,69 @@ function VoiceMessage({
 }
 
 
-/*
- * Recorded voice message
- */
+/* =========================================================
+   REAL RECORDED VOICE MESSAGE
+   ========================================================= */
+
 function RecordedVoice({
   audioUrl,
-  duration
+  duration,
+  number,
+  formatTime
 }) {
+
+  const audioRef = useRef(null);
+
+  const [playing, setPlaying] = useState(false);
+
+
+  /*
+   * PLAY / PAUSE
+   */
+
+  const togglePlayback = async () => {
+
+    const audio = audioRef.current;
+
+    if (!audio) {
+      return;
+    }
+
+    try {
+
+      if (audio.paused) {
+
+        await audio.play();
+
+        setPlaying(true);
+
+      } else {
+
+        audio.pause();
+
+        setPlaying(false);
+
+      }
+
+    } catch (error) {
+      console.error("Playback error:", error);
+    }
+  };
+
+
+  /*
+   * WHEN AUDIO FINISHES
+   */
+
+  const handleEnded = () => {
+    setPlaying(false);
+
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+    }
+  };
+
+
   return (
     <div className="voice mine recorded-voice">
 
@@ -389,14 +569,71 @@ function RecordedVoice({
 
       </div>
 
-      <div className="real-audio-message">
 
-        <audio
-          controls
-          src={audioUrl}
-        />
+      <div className="recorded-audio-row">
+
+        {/* CUSTOM PLAY BUTTON */}
+
+        <button
+          className="recorded-play"
+          onClick={togglePlayback}
+          aria-label={
+            playing
+              ? "Pause voice message"
+              : "Play voice message"
+          }
+        >
+
+          {playing ? (
+            <Pause
+              size={15}
+              fill="white"
+            />
+          ) : (
+            <Play
+              size={15}
+              fill="white"
+            />
+          )}
+
+        </button>
+
+
+        {/* WAVEFORM */}
+
+        <div className="recorded-wave">
+
+          {[12, 18, 10, 22, 15, 25, 11, 19, 14, 23, 12, 18].map(
+            (height, index) => (
+              <i
+                key={index}
+                style={{
+                  height
+                }}
+              />
+            )
+          )}
+
+        </div>
+
+
+        {/* DURATION */}
+
+        <span className="recorded-duration">
+          {formatTime(duration)}
+        </span>
 
       </div>
+
+
+      {/* HIDDEN REAL AUDIO ELEMENT */}
+
+      <audio
+        ref={audioRef}
+        src={audioUrl}
+        preload="metadata"
+        onEnded={handleEnded}
+      />
 
     </div>
   );

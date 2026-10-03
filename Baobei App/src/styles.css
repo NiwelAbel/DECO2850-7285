@@ -33,6 +33,10 @@ button {
   cursor: pointer;
 }
 
+/* =====================================================
+   ROOT
+   ===================================================== */
+
 #root {
   min-height: 100vh;
   display: flex;
@@ -66,7 +70,7 @@ button {
   height: 29px;
   border-radius: 20px;
   background: #000;
-  z-index: 20;
+  z-index: 50;
 }
 
 /* =====================================================
@@ -150,7 +154,7 @@ button {
 }
 
 /* =====================================================
-   GENERAL APP
+   APP
    ===================================================== */
 
 .app-screen {
@@ -161,10 +165,11 @@ button {
 .content {
   padding: 50px 24px 84px;
   flex: 1;
+  min-height: 0;
 }
 
 .scroll {
-  overflow: auto;
+  overflow-y: auto;
   scrollbar-width: none;
 }
 
@@ -216,6 +221,10 @@ button {
   right: 8px;
   top: 7px;
 }
+
+/* =====================================================
+   CONNECTED CARD
+   ===================================================== */
 
 .connected-card {
   width: 100%;
@@ -399,6 +408,8 @@ button {
   justify-content: space-around;
   align-items: center;
   flex-shrink: 0;
+  position: relative;
+  z-index: 40;
 }
 
 .nav {
@@ -498,10 +509,6 @@ button {
   color: #a09da3;
 }
 
-/* =====================================================
-   LATEST FROM BEAR
-   ===================================================== */
-
 .latest-card {
   margin-top: 118px;
   background: #fff7ea;
@@ -529,7 +536,9 @@ button {
   margin-top: 5px;
 }
 
-/* Multiple notifications */
+/* =====================================================
+   MULTIPLE BEAR NOTIFICATIONS
+   ===================================================== */
 
 .bear-notification {
   padding: 12px 0;
@@ -559,7 +568,7 @@ button {
 }
 
 /* =====================================================
-   RESPOND BUTTONS
+   RESPONSE BUTTONS
    ===================================================== */
 
 .respond {
@@ -669,11 +678,25 @@ button {
 }
 
 /* =====================================================
-   VOICE MESSAGES PAGE
+   VOICE MESSAGES
    ===================================================== */
 
 .messages-content {
-  padding-bottom: 170px;
+  /*
+   * Important:
+   * This gives the conversation its own scrolling area.
+   * It prevents the record button from overlapping
+   * messages when many recordings are added.
+   */
+  padding-bottom: 175px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  scrollbar-width: none;
+}
+
+.messages-content::-webkit-scrollbar {
+  display: none;
 }
 
 .listening {
@@ -689,7 +712,9 @@ button {
   font-weight: 700;
 }
 
-/* Existing voice message */
+/* =====================================================
+   EXISTING VOICE MESSAGE
+   ===================================================== */
 
 .voice {
   background: #fff;
@@ -697,6 +722,7 @@ button {
   border-radius: 24px;
   padding: 16px;
   margin: 0 0 14px 35px;
+  width: calc(100% - 35px);
 }
 
 .voice.mine {
@@ -705,6 +731,7 @@ button {
   border-color: #1d1b20;
   margin-left: 0;
   margin-right: 35px;
+  width: calc(100% - 35px);
 }
 
 .voice-top {
@@ -713,6 +740,7 @@ button {
   align-items: center;
   font-size: 11px;
   color: #777;
+  gap: 10px;
 }
 
 .voice.mine .voice-top {
@@ -762,14 +790,17 @@ button {
 
 .wave {
   flex: 1;
+  min-width: 0;
   height: 30px;
   display: flex;
   align-items: center;
   gap: 3px;
+  overflow: hidden;
 }
 
 .wave i {
   width: 5px;
+  flex-shrink: 0;
   background: #d2cfcc;
   border-radius: 3px;
 }
@@ -787,10 +818,12 @@ button {
   left: 24px;
   right: 24px;
   bottom: 80px;
-  z-index: 10;
+  z-index: 30;
 }
 
-/* Record button */
+/* =====================================================
+   RECORD BUTTON
+   ===================================================== */
 
 .record {
   position: static;
@@ -805,9 +838,12 @@ button {
   gap: 12px;
   font-size: 17px;
   font-weight: 800;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
-/* Recording state */
+/* =====================================================
+   RECORDING STATE
+   ===================================================== */
 
 .recording-controls {
   width: 100%;
@@ -819,6 +855,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
 .recording-status {
@@ -870,7 +907,7 @@ button {
   border: 1px solid #e6e2de;
   border-radius: 20px;
   padding: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .preview-title {
@@ -902,6 +939,7 @@ button {
 .delete-recording {
   width: 46px;
   height: 44px;
+  flex-shrink: 0;
   border-radius: 13px;
   background: #efebe7;
   color: #ff674f;
@@ -924,20 +962,75 @@ button {
 }
 
 /* =====================================================
-   REAL RECORDED MESSAGE
+   SENT REAL VOICE MESSAGE
    ===================================================== */
 
 .recorded-voice {
   margin-top: 14px;
 }
 
-.real-audio-message {
-  margin-top: 8px;
+/*
+   Custom playback row.
+   The actual <audio> element is hidden.
+   The React play button controls it.
+*/
+
+.recorded-audio-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
-.real-audio-message audio {
-  width: 100%;
+.recorded-play {
+  width: 38px;
   height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #55535a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recorded-play:active {
+  transform: scale(0.95);
+}
+
+.recorded-wave {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.recorded-wave i {
+  width: 4px;
+  min-width: 4px;
+  flex-shrink: 0;
+  background: #67656b;
+  border-radius: 4px;
+}
+
+.recorded-duration {
+  flex-shrink: 0;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/*
+   Hide native audio player inside sent messages.
+*/
+
+.recorded-voice audio {
+  display: none;
 }
 
 /* =====================================================
