@@ -8,23 +8,29 @@ import Bear from "../components/Bear";
 import Nav from "../components/Nav";
 import Activity from "../components/Activity";
 
-export default function Home({ setPage }) {
+export default function Home({ setPage, parent = "Mum" }) {
   return (
     <div className="mobile-screen app-screen">
       <main className="content scroll">
         <div className="home-top">
           <div>
             <h2>Good evening,</h2>
-            <h2>Mum! 👋</h2>
+            <h2>{parent}! 👋</h2>
           </div>
 
-          <button className="round-btn notification">
+          <button
+            className="round-btn notification"
+            aria-label="Notifications"
+          >
             <Bell size={23} />
             <i />
           </button>
         </div>
 
-        <button className="connected-card" onClick={() => setPage("live")}>
+        <button
+          className="connected-card"
+          onClick={() => setPage("live")}
+        >
           <div className="dark-bear">
             <Bear size={61} />
           </div>
@@ -38,7 +44,10 @@ export default function Home({ setPage }) {
           <ChevronRight color="white" size={21} />
         </button>
 
-        <button className="voice-alert" onClick={() => setPage("messages")}>
+        <button
+          className="voice-alert"
+          onClick={() => setPage("messages")}
+        >
           <div className="coral-icon">
             <Mic color="white" size={24} />
           </div>
@@ -65,12 +74,26 @@ export default function Home({ setPage }) {
 
         <div className="section-head">
           <h3>Bear Activity</h3>
-          <button>Simulate 🐻</button>
+          <button type="button">Simulate 🐻</button>
         </div>
 
-        <Activity icon="🤗" title="Your child hugged the bear" time="2 mins ago" />
-        <Activity icon="💛" title="Bear glowed warm yellow" time="18 mins ago" />
-        <Activity icon="🌟" title="Bear lit up for 30 seconds" time="1 hr ago" />
+        <Activity
+          icon="🤗"
+          title="Your child hugged the bear"
+          time="2 mins ago"
+        />
+
+        <Activity
+          icon="💛"
+          title="Bear glowed warm yellow"
+          time="18 mins ago"
+        />
+
+        <Activity
+          icon="🌟"
+          title="Bear lit up for 30 seconds"
+          time="1 hr ago"
+        />
       </main>
 
       <Nav page="home" setPage={setPage} />
