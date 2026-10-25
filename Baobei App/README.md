@@ -5,7 +5,7 @@ This is a complete standalone Vite + React project.
 ## Run it
 
 Open this folder in VS Code terminal:
-
+cd "C:\Users\rog\Desktop\7285\DECO2850-7285\Baobei App"
 ```bash
 npm install
 npm run dev
