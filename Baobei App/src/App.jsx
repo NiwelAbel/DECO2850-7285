@@ -7,9 +7,16 @@ import Home from "./pages/Home";
 import Live from "./pages/Live";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
+import Onboarding from "./components/Onboarding";
+import AppTutorial from "./components/AppTutorial";
+import { completeOnboarding, hasCompletedOnboarding } from "./lib/experience";
 
 export default function App() {
   const [page, setPage] = useState("login");
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [tutorialStep, setTutorialStep] = useState(0);
+  const [bearState, setBearState] = useState("message");
 
   const [parent, setParent] = useState(
     () => localStorage.getItem("baobeiParent") || "Mum"
@@ -39,6 +46,7 @@ export default function App() {
     setUser(newUser);
     setParent(newUser.parent);
     setPage("home");
+    setShowOnboarding(!hasCompletedOnboarding());
   }
 
   function handleLogin(email) {
@@ -68,7 +76,46 @@ export default function App() {
     }
 
     setPage("home");
+    setShowOnboarding(!hasCompletedOnboarding());
   }
+
+  function finishOnboarding() {
+    completeOnboarding();
+    setShowOnboarding(false);
+  }
+
+  function replayOnboarding() {
+    setPage("home");
+    setShowOnboarding(true);
+  }
+
+  function startTutorial() {
+    completeOnboarding();
+    setShowOnboarding(false);
+    setPage("home");
+    setTutorialStep(0);
+    setShowTutorial(true);
+  }
+
+  function finishTutorial() {
+    setShowTutorial(false);
+    setTutorialStep(0);
+    setPage("home");
+  }
+
+  const onboarding = showOnboarding ? (
+    <Onboarding onComplete={finishOnboarding} onStartTutorial={startTutorial} />
+  ) : null;
+
+  const tutorial = showTutorial ? (
+    <AppTutorial
+      currentPage={page}
+      setPage={setPage}
+      stepIndex={tutorialStep}
+      onStepChange={setTutorialStep}
+      onComplete={finishTutorial}
+    />
+  ) : null;
 
   function handleLogout() {
     // Preserve the registered prototype account.
@@ -97,27 +144,43 @@ export default function App() {
 
   if (page === "home") {
     return (
-      <Home
-        setPage={setPage}
-        parent={parent}
-      />
+      <>
+        <Home
+          setPage={setPage}
+          parent={parent}
+          bearState={bearState}
+          setBearState={setBearState}
+        />
+        {onboarding}
+        {tutorial}
+      </>
     );
   }
 
   if (page === "live") {
-    return <Live setPage={setPage} />;
+    return (
+      <>
+        <Live setPage={setPage} bearState={bearState} setBearState={setBearState} />
+        {tutorial}
+      </>
+    );
   }
 
   if (page === "messages") {
-    return <Messages setPage={setPage} />;
+    return <><Messages setPage={setPage} />{tutorial}</>;
   }
 
   if (page === "profile") {
     return (
-      <Profile
-        setPage={setPage}
-        onLogout={handleLogout}
-      />
+      <>
+        <Profile
+          setPage={setPage}
+          onLogout={handleLogout}
+          onReplayIntroduction={replayOnboarding}
+          onReplayTutorial={startTutorial}
+        />
+        {tutorial}
+      </>
     );
   }
 

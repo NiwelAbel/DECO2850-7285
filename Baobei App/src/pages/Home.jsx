@@ -8,7 +8,14 @@ import Bear from "../components/Bear";
 import Nav from "../components/Nav";
 import Activity from "../components/Activity";
 
-export default function Home({ setPage, parent = "Mum" }) {
+const DEMO_STATES = ["message", "happy", "glowing", "disconnected", "calm"];
+
+export default function Home({ setPage, parent = "Mum", bearState = "calm", setBearState }) {
+  const simulateNextState = () => {
+    const currentIndex = DEMO_STATES.indexOf(bearState);
+    setBearState?.(DEMO_STATES[(currentIndex + 1) % DEMO_STATES.length]);
+  };
+
   return (
     <div className="mobile-screen app-screen">
       <main className="content scroll">
@@ -28,24 +35,36 @@ export default function Home({ setPage, parent = "Mum" }) {
         </div>
 
         <button
-          className="connected-card"
+          className="connected-card bear-hero-card"
+          data-tutorial="bear-card"
           onClick={() => setPage("live")}
         >
           <div className="dark-bear">
-            <Bear size={61} />
+            <Bear size={138} state={bearState} />
           </div>
 
-          <div className="grow">
-            <strong className="green">Bear Connected</strong>
-            <h3>Your child is doing well!</h3>
-            <small>Last active: 2 mins ago</small>
+          <div className="bear-hero-copy">
+            <strong className={bearState === "disconnected" ? "offline" : "green"}>
+              {bearState === "disconnected" ? "Bear Offline" : "Bear Connected"}
+            </strong>
+            <h3>{bearState === "message" ? "A new moment is waiting" : "Your child's bear is ready"}</h3>
+            <small>
+              {bearState === "glowing"
+                ? "Your warm light was sent"
+                : bearState === "happy"
+                  ? "A happy interaction just happened"
+                  : bearState === "disconnected"
+                    ? "Tap to check the connection"
+                    : "Last active: 2 mins ago"}
+            </small>
           </div>
 
-          <ChevronRight color="white" size={21} />
+          <span className="bear-hero-arrow"><ChevronRight color="white" size={21} /></span>
         </button>
 
         <button
           className="voice-alert"
+          data-tutorial="voice-card"
           onClick={() => setPage("messages")}
         >
           <div className="coral-icon">
@@ -74,7 +93,7 @@ export default function Home({ setPage, parent = "Mum" }) {
 
         <div className="section-head">
           <h3>Bear Activity</h3>
-          <button type="button">Simulate 🐻</button>
+          <button type="button" onClick={simulateNextState}>Try bear states 🐻</button>
         </div>
 
         <Activity

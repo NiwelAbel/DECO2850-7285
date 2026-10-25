@@ -227,39 +227,16 @@ export default function Messages({ setPage }) {
 
 
         {/* =================================================
-            CHILD MESSAGE
-            ================================================= */}
-
-        <VoiceMessage
-          from="Your child"
-          time="Today 6:30 PM"
-          duration="0:12"
-          fresh
-        />
-
-
-        <VoiceMessage
-          from="Your child"
-          time="Today 4:15 PM"
-          duration="0:25"
-        />
-
-
-        {/* =================================================
-            EXISTING PARENT MESSAGE
-            ================================================= */}
-
-        <VoiceMessage
-          from="You"
-          time="Today 2:10 PM"
-          duration="0:18"
-          mine
-        />
-
-
-        {/* =================================================
             ALL NEW RECORDINGS
             ================================================= */}
+
+        {sentVoices.length === 0 && (
+          <div className="messages-empty">
+            <span>🎙️</span>
+            <h3>No voice messages yet</h3>
+            <p>Your recorded replies will appear here after you send them.</p>
+          </div>
+        )}
 
         {sentVoices.map((voice, index) => (
           <RecordedVoice
@@ -296,6 +273,7 @@ export default function Messages({ setPage }) {
         {!recording && !audioUrl && (
           <button
             className="record"
+            data-tutorial="record-reply"
             onClick={startRecording}
           >
             <Mic size={21} />
@@ -406,85 +384,6 @@ export default function Messages({ setPage }) {
         page="messages"
         setPage={setPage}
       />
-
-    </div>
-  );
-}
-
-
-/* =========================================================
-   NORMAL VOICE MESSAGE
-   ========================================================= */
-
-function VoiceMessage({
-  from,
-  time,
-  duration,
-  mine,
-  fresh
-}) {
-
-  const bars = [
-    8, 14, 20, 11, 17, 24,
-    13, 19, 10, 16, 21, 12,
-    18, 9, 15, 22, 12, 18
-  ];
-
-  return (
-    <div
-      className={`voice ${mine ? "mine" : ""}`}
-    >
-
-      <div className="voice-top">
-
-        <strong>
-          {from}
-        </strong>
-
-        <span>
-
-          {fresh && (
-            <b className="new">
-              NEW
-            </b>
-          )}
-
-          {time}
-
-        </span>
-
-      </div>
-
-
-      <div className="wave-row">
-
-        <button className="play">
-          <Play
-            size={14}
-            fill="white"
-          />
-        </button>
-
-
-        <div className="wave">
-
-          {bars.map((height, index) => (
-            <i
-              key={index}
-              style={{
-                height
-              }}
-            />
-          ))}
-
-        </div>
-
-
-        <span>
-          {duration}
-        </span>
-
-      </div>
 
     </div>
   );

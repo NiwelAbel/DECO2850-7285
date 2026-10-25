@@ -11,6 +11,8 @@ npm install
 npm run dev
 ```
 
+Refresh: localStorage.removeItem("baobeiOnboardingComplete")
+
 Then open the localhost address Vite gives you.
 
 ## Structure

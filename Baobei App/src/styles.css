@@ -101,6 +101,151 @@ button {
   margin: auto;
 }
 
+/* Stateful 2D BaoBei mascot */
+.baobei-mascot {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.baobei-bear-svg {
+  overflow: visible;
+  filter: drop-shadow(0 8px 12px rgba(45, 27, 18, 0.16));
+}
+
+.bear-ear,
+.bear-head {
+  fill: #b97648;
+}
+
+.bear-ear-inner,
+.bear-muzzle {
+  fill: #e9bb91;
+}
+
+.bear-eye,
+.bear-nose {
+  fill: #2d201a;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.bear-mouth,
+.bear-happy-eye,
+.bear-sad-brow,
+.bear-sound-waves path {
+  fill: none;
+  stroke: #2d201a;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.bear-happy-eye,
+.bear-sad-brow,
+.bear-sound-waves {
+  display: none;
+}
+
+.bear-heart-light {
+  fill: #f0a98f;
+  opacity: 0.38;
+}
+
+.bear-heart {
+  fill: #fff4e4;
+}
+
+.baobei-mascot.calm .baobei-bear-svg {
+  animation: bearBreathe 3.2s ease-in-out infinite;
+}
+
+.baobei-mascot.happy .baobei-bear-svg {
+  animation: bearHappy 0.75s ease-in-out infinite alternate;
+}
+
+.baobei-mascot.happy .bear-eye {
+  display: none;
+}
+
+.baobei-mascot.happy .bear-happy-eye {
+  display: block;
+}
+
+.baobei-mascot.message .bear-heart-light,
+.baobei-mascot.glowing .bear-heart-light {
+  fill: #ffd85e;
+  opacity: 1;
+  animation: bearLightPulse 1s ease-in-out infinite;
+}
+
+.baobei-mascot.message .baobei-bear-svg {
+  animation: bearMessage 0.65s ease-in-out infinite alternate;
+}
+
+.baobei-mascot.listening .bear-sound-waves {
+  display: block;
+  animation: soundWave 1s ease-in-out infinite;
+}
+
+.baobei-mascot.disconnected {
+  filter: grayscale(1);
+  opacity: 0.62;
+}
+
+.baobei-mascot.disconnected .bear-sad-brow {
+  display: block;
+}
+
+.mascot-status {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.mascot-status strong {
+  font-size: 15px;
+}
+
+.mascot-status small {
+  color: #8a858e;
+  margin-top: 3px;
+}
+
+@keyframes bearBreathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.015); }
+}
+
+@keyframes bearHappy {
+  from { transform: translateY(0) rotate(-2deg); }
+  to { transform: translateY(-5px) rotate(2deg); }
+}
+
+@keyframes bearMessage {
+  from { transform: rotate(-2deg); }
+  to { transform: rotate(2deg); }
+}
+
+@keyframes bearLightPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px #ffd85e); }
+  50% { filter: drop-shadow(0 0 12px #ffe98f); }
+}
+
+@keyframes soundWave {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baobei-mascot *,
+  .baobei-bear-svg {
+    animation: none !important;
+  }
+}
+
 .brand h1 {
   font-size: 34px;
   margin: 17px 0 4px;
@@ -240,6 +385,49 @@ button {
   margin-bottom: 18px;
 }
 
+.bear-hero-card {
+  position: relative;
+  min-height: 244px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 16px 18px 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 207, 107, 0.13), transparent 38%),
+    #1d1b20;
+}
+
+.bear-hero-card .dark-bear {
+  padding: 0;
+  background: transparent;
+}
+
+.bear-hero-card .baobei-bear-svg {
+  filter: drop-shadow(0 12px 15px rgba(0, 0, 0, 0.28));
+}
+
+.bear-hero-copy h3 {
+  margin: 4px 0;
+  font-size: 18px;
+}
+
+.bear-hero-copy small {
+  color: #aaa5ac;
+}
+
+.bear-hero-arrow {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .dark-bear {
   background: #343239;
   border-radius: 19px;
@@ -262,6 +450,321 @@ button {
 .green {
   color: #32c765;
   font-size: 14px;
+}
+
+.offline {
+  color: #ffb2a6;
+  font-size: 14px;
+}
+
+/* =====================================================
+   FIRST-USE ONBOARDING
+   ===================================================== */
+
+.onboarding-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(18, 15, 20, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.onboarding-card {
+  width: 390px;
+  height: 844px;
+  max-width: 100%;
+  max-height: calc(100vh - 44px);
+  border-radius: 40px;
+  background: #fffaf4;
+  padding: 55px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.onboarding-topbar,
+.onboarding-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.onboarding-brand {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+}
+
+.onboarding-skip {
+  background: transparent;
+  color: #766f72;
+  padding: 8px;
+}
+
+.onboarding-visual {
+  position: relative;
+  min-height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-orbit {
+  position: absolute;
+  width: 255px;
+  height: 255px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--step-accent) 15%, white);
+  box-shadow: 0 0 0 28px color-mix(in srgb, var(--step-accent) 5%, transparent);
+}
+
+.onboarding-visual .baobei-mascot {
+  position: relative;
+  z-index: 2;
+}
+
+.onboarding-icon {
+  position: absolute;
+  z-index: 3;
+  right: 36px;
+  top: 58px;
+  width: 48px;
+  height: 48px;
+  border-radius: 17px;
+  background: var(--step-accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--step-accent) 35%, transparent);
+}
+
+.onboarding-copy {
+  text-align: center;
+  animation: copyIn 0.3s ease;
+}
+
+.onboarding-copy > span {
+  color: #e76550;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+
+.onboarding-copy h1 {
+  margin: 11px auto 12px;
+  font-size: 29px;
+  line-height: 1.12;
+  max-width: 320px;
+}
+
+.onboarding-copy p {
+  margin: 0 auto;
+  max-width: 315px;
+  color: #746e73;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.onboarding-progress {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: auto 0 22px;
+}
+
+.onboarding-progress i {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #ded9d4;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.onboarding-progress i.active {
+  width: 27px;
+  background: #ff765e;
+}
+
+.onboarding-back {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: #efeae5;
+  display: grid;
+  place-items: center;
+}
+
+.onboarding-back:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.onboarding-next {
+  height: 58px;
+  min-width: 202px;
+  padding: 0 25px;
+  border-radius: 18px;
+  background: #1d1b20;
+  color: white;
+  font-weight: 800;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-choice-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.onboarding-next.tutorial-choice {
+  width: 100%;
+}
+
+.explore-choice {
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  color: #716b70;
+  font-weight: 700;
+}
+
+/* =====================================================
+   INTERACTIVE APP TUTORIAL
+   ===================================================== */
+
+.app-tutorial {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+
+.tutorial-spotlight {
+  position: fixed;
+  z-index: 301;
+  border: 3px solid #ff8069;
+  border-radius: 24px;
+  box-shadow:
+    0 0 0 9999px rgba(16, 13, 18, 0.72),
+    0 0 0 7px rgba(255, 128, 105, 0.24);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.tutorial-tip {
+  position: fixed;
+  z-index: 302;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(350px, calc(100vw - 32px));
+  padding: 19px;
+  border-radius: 22px;
+  background: #fffaf4;
+  color: #1d1b20;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.32);
+}
+
+.tutorial-tip-top,
+.tutorial-tip-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tutorial-tip-top span {
+  color: #e86651;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+}
+
+.tutorial-tip-top button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #eee9e4;
+  display: grid;
+  place-items: center;
+}
+
+.tutorial-tip h2 {
+  margin: 10px 0 7px;
+  font-size: 21px;
+}
+
+.tutorial-tip p {
+  margin: 0 0 17px;
+  color: #6f6970;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tutorial-previous,
+.tutorial-continue {
+  min-height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 800;
+}
+
+.tutorial-previous {
+  padding: 0 12px;
+  background: #eee9e4;
+  color: #4f4a50;
+}
+
+.tutorial-previous:disabled {
+  opacity: 0.35;
+}
+
+.tutorial-continue {
+  min-width: 116px;
+  padding: 0 18px;
+  background: #1d1b20;
+  color: white;
+}
+
+.replay-tutorial {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 16px;
+  background: #1d1b20;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 750;
+  margin: 18px 0 9px;
+}
+
+.replay-app-tutorial {
+  margin: 0 0 22px;
+  background: #ff735d;
+}
+
+@keyframes copyIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-height: 760px) {
+  .onboarding-card { padding-top: 42px; }
+  .onboarding-visual { min-height: 240px; }
+  .onboarding-orbit { width: 210px; height: 210px; }
+  .onboarding-visual .baobei-bear-svg { width: 145px; height: 145px; }
+  .onboarding-copy h1 { font-size: 25px; }
 }
 
 /* =====================================================
@@ -482,12 +985,20 @@ button {
 .live-card {
   background: #1d1b20;
   border-radius: 28px;
-  height: 228px;
+  height: 205px;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.live-content {
+  padding-bottom: 24px;
+}
+
+.live-content .header {
+  margin-bottom: 4px;
 }
 
 .connected-pill {
@@ -510,11 +1021,11 @@ button {
 }
 
 .latest-card {
-  margin-top: 118px;
+  margin-top: 14px;
   background: #fff7ea;
   border: 1px solid #f3d9a8;
   border-radius: 22px;
-  padding: 18px;
+  padding: 14px 18px;
 }
 
 .latest-card label {
@@ -539,6 +1050,24 @@ button {
 /* =====================================================
    MULTIPLE BEAR NOTIFICATIONS
    ===================================================== */
+
+.bear-notification-list {
+  height: 108px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #d7c5a8 transparent;
+  padding-right: 5px;
+}
+
+.bear-notification-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.bear-notification-list::-webkit-scrollbar-thumb {
+  background: #d7c5a8;
+  border-radius: 5px;
+}
 
 .bear-notification {
   padding: 12px 0;
@@ -576,7 +1105,19 @@ button {
   color: #85818a;
   font-size: 13px;
   letter-spacing: 0.6px;
-  margin: 114px 0 14px;
+  margin: 16px 0 10px;
+}
+
+.live-content .actions {
+  gap: 10px;
+}
+
+.live-content .action {
+  min-height: 86px;
+}
+
+.live-content .action span {
+  font-size: 25px;
 }
 
 .actions {
@@ -710,6 +1251,33 @@ button {
 .listening span {
   color: #32c765;
   font-weight: 700;
+}
+
+.messages-empty {
+  margin-top: 20px;
+  padding: 30px 22px;
+  border: 1px dashed #d9d3cd;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.58);
+  text-align: center;
+}
+
+.messages-empty span {
+  display: block;
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.messages-empty h3 {
+  margin: 0 0 7px;
+  font-size: 17px;
+}
+
+.messages-empty p {
+  margin: 0;
+  color: #858088;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 /* =====================================================

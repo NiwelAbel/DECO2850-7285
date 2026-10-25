@@ -42,7 +42,7 @@ const FAQS = [
   },
 ];
 
-export default function Profile({ setPage }) {
+export default function Profile({ setPage, onReplayIntroduction, onReplayTutorial }) {
   const [activePanel, setActivePanel] = useState(null);
   const [darkMode, setDarkMode] = useState(
     () => localStorage.getItem("baobeiDarkMode") === "true"
@@ -148,6 +148,7 @@ export default function Profile({ setPage }) {
             className="profile-row"
             key={label}
             onClick={action}
+            data-tutorial={label === "Help & Support" ? "help-support" : undefined}
           >
             <Icon size={21} color="#48337A" />
             <strong>{label}</strong>
@@ -241,6 +242,22 @@ export default function Profile({ setPage }) {
                     Find answers to common Baobei questions.
                   </p>
                 </div>
+
+                <button
+                  className="replay-tutorial"
+                  onClick={onReplayIntroduction}
+                >
+                  <HelpCircle size={19} />
+                  View Introduction
+                </button>
+
+                <button
+                  className="replay-tutorial replay-app-tutorial"
+                  onClick={onReplayTutorial}
+                >
+                  <HelpCircle size={19} />
+                  Replay App Tutorial
+                </button>
 
                 <h4 className="faq-heading">
                   Frequently Asked Questions

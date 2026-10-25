@@ -4,12 +4,13 @@ import Bear from "../components/Bear";
 import Header from "../components/Header";
 import Action from "../components/Action";
 
-export default function Live({ setPage }) {
+export default function Live({ setPage, bearState = "calm", setBearState }) {
   const [activeEffect, setActiveEffect] = useState(null);
   const [notifications, setNotifications] = useState([]);
 
   const triggerEffect = (effect, message) => {
     setActiveEffect(effect);
+    setBearState?.(effect === "hug" ? "happy" : "glowing");
 
     setNotifications(prev => [
       { message, time: "Just now" },
@@ -20,17 +21,18 @@ export default function Live({ setPage }) {
 
     window.__baobeiEffectTimer = window.setTimeout(() => {
       setActiveEffect(null);
+      setBearState?.("calm");
     }, effect === "hug" ? 1200 : 3000);
   };
 
   return (
     <div className="mobile-screen app-screen">
-      <main className="content scroll">
+      <main className="content scroll live-content">
         <Header title="Live Activity" back={() => setPage("home")} />
 
         <div className="live-card">
           <div className={`live-bear ${activeEffect || ""}`}>
-            <Bear size={92} />
+            <Bear size={112} state={bearState} />
 
             {activeEffect === "heart" && (
               <span className="bear-glow">💛</span>
@@ -63,24 +65,26 @@ export default function Live({ setPage }) {
         <div className="latest-card">
           <label>LATEST FROM BEAR</label>
 
-          {notifications.length === 0 ? (
-            <>
-              <strong>🤗 Your child just hugged the bear!</strong>
-              <small>Just now</small>
-            </>
-          ) : (
-            notifications.map((item, index) => (
-              <div className="bear-notification" key={index}>
-                <strong>{item.message}</strong>
-                <small>{item.time}</small>
+          <div className="bear-notification-list" data-tutorial="activity-list" aria-live="polite">
+            {notifications.length === 0 ? (
+              <div className="bear-notification">
+                <strong>🤗 Your child just hugged the bear!</strong>
+                <small>Just now</small>
               </div>
-            ))
-          )}
+            ) : (
+              notifications.map((item, index) => (
+                <div className="bear-notification" key={index}>
+                  <strong>{item.message}</strong>
+                  <small>{item.time}</small>
+                </div>
+              ))
+            )}
+          </div>
         </div>
 
         <p className="respond">RESPOND TO YOUR CHILD</p>
 
-        <div className="actions">
+        <div className="actions" data-tutorial="response-actions">
           <Action
             icon="💛"
             text="Heart-light"
